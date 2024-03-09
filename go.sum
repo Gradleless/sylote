@@ -1,5 +1,3 @@
-github.com/electricbubble/go-toast v0.3.0 h1:e/PtFkpYNdLANI/utTXzoYQuMYG/N8oHT0Rwal4z/sI=
-github.com/electricbubble/go-toast v0.3.0/go.mod h1:6k4ufXmV/AS32EugdLeIXa+2jv6oYbWzv2+UZhB49FI=
 github.com/gen2brain/beeep v0.0.0-20240112042604-c7bb2cd88fea h1:oWUHxzaBvwkRWiINbBOY39XIF+n9b4RJEPHdQ8waJUo=
 github.com/gen2brain/beeep v0.0.0-20240112042604-c7bb2cd88fea/go.mod h1:0W7dI87PvXJ1Sjs0QPvWXKcQmNERY77e8l7GFhZB/s4=
 github.com/go-toast/toast v0.0.0-20190211030409-01e6764cf0a4 h1:qZNfIGkIANxGv/OqtnntR4DfOY2+BgwR60cAcu/i3SE=
