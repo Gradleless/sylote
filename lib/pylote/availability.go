@@ -27,12 +27,11 @@ func SetAvailability(id string, available bool, date string) {
 		return
 	}
 
-	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:122.0) Gecko/20100101 Firefox/122.0")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36")
 	req.Header.Add("Accept", "application/json, text/plain, */*")
 	req.Header.Add("Accept-Language", "en-US,en;q=0.5")
 	req.Header.Add("Accept-Encoding", "gzip, deflate, br")
 	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("Origin", "moz-extension://18443650-c9cb-407e-83ea-b7e0f5465571")
 	req.Header.Add("DNT", "1")
 	req.Header.Add("Connection", "keep-alive")
 	req.Header.Add("Sec-Fetch-Dest", "empty")
