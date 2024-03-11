@@ -54,7 +54,7 @@ func SendDiscordNotification(webhookURL string, message string, jobs []pylote.Jo
 
 		if len(urls) >= 10 {
 			embeds = append(embeds, Embed{
-				Title:  "Pylote Auto Finder",
+				Title:  "Sylote",
 				Color:  5814783,
 				Fields: urls,
 			})

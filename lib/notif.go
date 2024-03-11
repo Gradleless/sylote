@@ -5,7 +5,7 @@ import (
 )
 
 func SendNotification(message string) {
-	err := beeep.Notify("Pylote", message, "")
+	err := beeep.Notify("Sylote", message, "")
 	if err != nil {
 		panic(err)
 	}
