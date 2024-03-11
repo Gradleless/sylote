@@ -42,9 +42,9 @@ func setService() {
 	prg := &program{exit: make(chan struct{})}
 
 	svcConfig := &service.Config{
-		Name:        "MonProgrammeService",
-		DisplayName: "Mon Programme Go Service",
-		Description: "Un exemple de service en arrière-plan avec Go.",
+		Name:        "Sylote",
+		DisplayName: "Sylote Service",
+		Description: "Service permettant de trouver des boulots vous intéressant et de mettre à jour votre statut automatiquement",
 	}
 
 	s, err := service.New(prg, svcConfig)
@@ -71,7 +71,7 @@ func setService() {
 
 func deleteService() {
 	svcConfig := &service.Config{
-		Name: "MonProgrammeService",
+		Name: "Sylote",
 	}
 
 	s, err := service.New(nil, svcConfig)
@@ -84,5 +84,6 @@ func deleteService() {
 		fmt.Println("Erreur lors de la suppression du service:", err)
 	} else {
 		fmt.Println("Service supprimé avec succès.")
+		SendNotification("Service supprimé avec succès.")
 	}
 }
