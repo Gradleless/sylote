@@ -1,2 +1,2 @@
 # sylote
- Pylote auto finder & auto updater
+ Pylote mission seeker & auto updater
