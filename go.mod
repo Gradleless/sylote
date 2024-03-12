@@ -1,6 +1,6 @@
 module github.com/mavenless/sylote
 
-go 1.23
+go 1.21.6
 
 require github.com/gen2brain/beeep v0.0.0-20240112042604-c7bb2cd88fea
 require github.com/kardianos/service v1.2.2
