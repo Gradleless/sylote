@@ -7,7 +7,7 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/emersion/go-autostart"
+	"github.com/jannson/go-autostart"
 )
 
 func SetAutoStart() {
