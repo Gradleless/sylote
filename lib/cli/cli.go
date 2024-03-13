@@ -19,6 +19,7 @@ func userInputs() {
 }
 
 func Automation() {
+	lib.SendNotification("Démarrage de Sylote")
 	data := ReadDataFromFile()
 
 	var precJobs []pylote.Job
@@ -58,17 +59,20 @@ func Cli(args []string) {
 	switch command {
 	case "install":
 		// Add code for installation logic here
-		userInputs()
+		lib.SetAutoStart()
 		// TODO
 		os.Exit(0)
 	case "uninstall":
 		// Add code for uninstallation logic here
 		// TODO
+		fmt.Println("Désinstallation de l'application")
+		lib.UnsetAutoStart()
 		os.Exit(0)
 	case "update":
 		// Add code for update logic here
 		// TODO
 		userInputs()
+
 	case "help":
 		fmt.Println("Usage: sylote [command]")
 		fmt.Println("Commands:")
@@ -78,7 +82,7 @@ func Cli(args []string) {
 		os.Exit(0)
 
 	case "start":
-		Automation()
+		lib.SetAutoStart()
 	default:
 		fmt.Println("Commande non reconnue. Utilisez 'sylote help' pour obtenir de l'aide.")
 	}

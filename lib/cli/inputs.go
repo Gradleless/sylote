@@ -6,6 +6,10 @@ import (
 	"os"
 	"reflect"
 	"strings"
+
+	"path/filepath"
+
+	"github.com/mavenless/sylote/lib"
 )
 
 type Data struct {
@@ -99,7 +103,13 @@ func SaveDataToFile(data struct {
 		return
 	}
 
-	file, err := os.Create("data/data.json")
+	ex, err := os.Executable()
+	if err != nil {
+		panic(err)
+	}
+	exPath := filepath.Dir(ex)
+
+	file, err := os.Create(exPath + "data/data.json")
 	if err != nil {
 		fmt.Println("Erreur :", err)
 		return
@@ -114,9 +124,17 @@ func SaveDataToFile(data struct {
 }
 
 func ReadDataFromFile() Data {
-	file, err := os.Open("data/data.json")
+	ex, err := os.Executable()
+
+	if err != nil {
+		panic(err)
+	}
+	exPath := filepath.Dir(ex)
+
+	file, err := os.Open(exPath + "/data/data.json")
 	if err != nil {
 		fmt.Println("Erreur :", err)
+		lib.SendNotification("Erreur lors de la lecture du fichier data.json")
 		return Data{}
 	}
 	defer file.Close()
@@ -135,6 +153,7 @@ func ReadDataFromFile() Data {
 	err = json.Unmarshal(fileData, &data)
 	if err != nil {
 		fmt.Println("Erreur :", err)
+		lib.SendNotification("Erreur lors de la lecture du fichier data.json")
 		return Data{}
 	}
 

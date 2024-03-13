@@ -29,8 +29,11 @@ func UnsetAutoStart() {
 		DisplayName: "Sylote",
 		Exec:        GetExecCommand(),
 	}
-	if err := app.Disable(); err != nil {
-		log.Fatal(err)
+
+	if app.IsEnabled() {
+		if err := app.Disable(); err != nil {
+			log.Fatal(err)
+		}
 	}
 }
 
@@ -41,7 +44,7 @@ func GetExecCommand() []string {
 		execCommand += ".exe"
 	}
 	fmt.Println(GetExecPath())
-	return []string{GetExecPath(), "start"}
+	return []string{GetExecPath()}
 }
 
 func GetExecPath() string {
