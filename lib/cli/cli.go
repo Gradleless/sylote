@@ -4,13 +4,24 @@ import (
 	"fmt"
 	"os"
 
-	"reflect"
 	"strconv"
 	"time"
 
 	"github.com/mavenless/sylote/lib"
 	"github.com/mavenless/sylote/lib/pylote"
 )
+
+func ArrayElementEquals(array1 []pylote.Job, array2 []pylote.Job) bool {
+	if len(array1) != len(array2) {
+		return false
+	}
+	for i := range array1 {
+		if array1[i] != array2[i] {
+			return false
+		}
+	}
+	return true
+}
 
 func userInputs() {
 	searchStr, id, update, timeStr, discordWebhook := GetUserInput()
@@ -30,10 +41,10 @@ func Automation() {
 	for {
 		jobs := pylote.SortJobs(pylote.GetJobs(), data.Search)
 
-		if !reflect.DeepEqual(jobs, precJobs) {
-			precJobs = jobs
-			lib.SendNotification("Il y a " + strconv.Itoa(len(jobs)) + " nouvelle(s) offre(s) vous correspondant sur Pylote !")
+		if !ArrayElementEquals(jobs, precJobs) && len(precJobs) != 0 {
+			lib.SendNotification("Il y a " + strconv.Itoa(len(jobs)-len(precJobs)) + " nouvelle(s) offre(s) vous correspondant sur Pylote !")
 			lib.SendDiscordNotification(data.DiscordWebhook, jobs)
+			precJobs = jobs
 		}
 
 		if time.Since(startUpTime).Hours() >= 24 && data.Update {
