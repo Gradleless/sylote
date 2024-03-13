@@ -26,7 +26,7 @@ type Field struct {
 	Value string `json:"value"`
 }
 
-func SendDiscordNotification(webhookURL string, message string, jobs []pylote.Job) {
+func SendDiscordNotification(webhookURL string, jobs []pylote.Job) {
 
 	urls := []Field{}
 	embeds := []Embed{}
