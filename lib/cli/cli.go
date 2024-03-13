@@ -59,17 +59,16 @@ func Cli(args []string) {
 	case "install":
 		// Add code for installation logic here
 		userInputs()
-		lib.SetAutoStart()
+		// TODO
 		os.Exit(0)
 	case "uninstall":
 		// Add code for uninstallation logic here
-		lib.UnsetAutoStart()
+		// TODO
 		os.Exit(0)
 	case "update":
 		// Add code for update logic here
-		lib.UnsetAutoStart()
+		// TODO
 		userInputs()
-		lib.SetAutoStart()
 	case "help":
 		fmt.Println("Usage: sylote [command]")
 		fmt.Println("Commands:")
