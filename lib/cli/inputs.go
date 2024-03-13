@@ -109,7 +109,7 @@ func SaveDataToFile(data struct {
 	}
 	exPath := filepath.Dir(ex)
 
-	file, err := os.Create(exPath + "data/data.json")
+	file, err := os.Create(exPath + "/data/data.json")
 	if err != nil {
 		fmt.Println("Erreur :", err)
 		return
