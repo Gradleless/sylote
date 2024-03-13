@@ -69,10 +69,8 @@ func Cli(args []string) {
 		lib.UnsetAutoStart()
 		os.Exit(0)
 	case "update":
-		// Add code for update logic here
-		// TODO
 		userInputs()
-
+		os.Exit(0)
 	case "help":
 		fmt.Println("Usage: sylote [command]")
 		fmt.Println("Commands:")
@@ -82,7 +80,7 @@ func Cli(args []string) {
 		os.Exit(0)
 
 	case "start":
-		lib.SetAutoStart()
+		Automation()
 	default:
 		fmt.Println("Commande non reconnue. Utilisez 'sylote help' pour obtenir de l'aide.")
 	}
