@@ -69,13 +69,10 @@ func Cli(args []string) {
 	command := args[1]
 	switch command {
 	case "install":
-		// Add code for installation logic here
 		lib.SetAutoStart()
-		// TODO
+		userInputs()
 		os.Exit(0)
 	case "uninstall":
-		// Add code for uninstallation logic here
-		// TODO
 		fmt.Println("Désinstallation de l'application")
 		lib.UnsetAutoStart()
 		os.Exit(0)

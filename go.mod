@@ -8,11 +8,10 @@ require github.com/inconshreveable/go-update v0.0.0-20160112193335-8152e7eb6ccf
 
 require (
 	github.com/go-ole/go-ole v1.3.0 // indirect
-	github.com/jannson/go-autostart v0.0.0-20240128093747-95b24be11be3 // indirect
+	github.com/jannson/go-autostart v0.0.0-20240128093747-95b24be11be3
 )
 
 require (
-	github.com/emersion/go-autostart v0.0.0-20210130080809-00ed301c8e9a
 	github.com/go-toast/toast v0.0.0-20190211030409-01e6764cf0a4 // indirect
 	github.com/godbus/dbus/v5 v5.1.0 // indirect
 	github.com/nu7hatch/gouuid v0.0.0-20131221200532-179d4d0c4d8d // indirect

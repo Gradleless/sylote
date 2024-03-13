@@ -10,6 +10,7 @@ import (
 	"path/filepath"
 
 	"github.com/mavenless/sylote/lib"
+	"github.com/mavenless/sylote/lib/pylote"
 )
 
 type Data struct {
@@ -25,13 +26,46 @@ func GetUserInput() (string, string, bool, string, string) {
 	fmt.Print("Entrez les termes de recherche (séparés par des virgules) : ")
 	fmt.Scanln(&searchStr)
 
+	var choice int
+	fmt.Print("Voulez-vous ajouter un ID manuellement ou par mail  ? (0/1) : ")
+	_, err := fmt.Scanln(&choice)
+	if err != nil {
+		fmt.Println("Erreur :", err)
+		return "", "", false, "", ""
+	}
+
+	if choice != 0 && choice != 1 {
+		fmt.Println("Erreur : choix doit être 0 ou 1")
+		return "", "", false, "", ""
+	}
+
 	var id string
-	fmt.Print("Entrez l'ID : ")
-	fmt.Scanln(&id)
+	if choice == 0 {
+
+		fmt.Print("Entrez l'ID : ")
+		fmt.Scanln(&id)
+	}
+
+	if choice == 1 {
+		var email string
+		fmt.Print("Entrez votre email : ")
+		fmt.Scanln(&email)
+		pylote.GetCode(email)
+
+		var code string
+		fmt.Print("Entrez le code reçu par mail : ")
+		fmt.Scanln(&code)
+		id = pylote.GetToken(email, code)
+
+		if id == "" {
+			fmt.Println("Erreur : impossible de récupérer l'ID")
+			return "", "", false, "", ""
+		}
+	}
 
 	var update bool
 	fmt.Print("Mettre à jour ? (true/false) : ")
-	_, err := fmt.Scanln(&update)
+	_, err = fmt.Scanln(&update)
 	if err != nil {
 		fmt.Println("Erreur :", err)
 		return "", "", false, "", ""
