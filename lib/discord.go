@@ -52,7 +52,7 @@ func SendDiscordNotification(webhookURL string, jobs []pylote.Job) {
 			})
 		}
 
-		if len(urls) >= 10 {
+		if len(urls) >= 16 {
 			embeds = append(embeds, Embed{
 				Title:  "Sylote",
 				Color:  5814783,
