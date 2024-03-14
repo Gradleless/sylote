@@ -66,7 +66,7 @@ func SortJobs(jobs []Job, words []string) []Job {
 		var found bool
 		for _, word := range words {
 			for _, value := range []string{job.TJM, job.City, job.Date, job.JoursSemaine, job.Plateforme, job.Remote, job.Durée, job.Title, job.DuréeMois} {
-				if strings.Contains(value, word) {
+				if strings.Contains(strings.ToLower(value), strings.ToLower(word)) {
 					found = true
 					break
 				} else {
