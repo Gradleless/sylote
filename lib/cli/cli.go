@@ -11,18 +11,18 @@ import (
 	"github.com/mavenless/sylote/lib/pylote"
 )
 
-func ArrayElementEquals(array1 []pylote.Job, array2 []pylote.Job) (bool, int) {
+func ArrayElementEquals(jobs []pylote.Job, precJobs []pylote.Job) (bool, int) {
 	var nbr int = 0
 	var res bool = true
 
-	minLength := len(array1)
-	if len(array2) < minLength {
-		minLength = len(array2)
+	minLength := len(jobs)
+	if len(precJobs) < minLength {
+		minLength = len(precJobs)
 		res = false
 	}
 
 	for i := 0; i < minLength; i++ {
-		if array1[i] != array2[i] {
+		if jobs[i] != precJobs[i] {
 			nbr++
 			res = false
 		}
