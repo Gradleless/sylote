@@ -15,7 +15,12 @@ func ArrayElementEquals(array1 []pylote.Job, array2 []pylote.Job) (bool, int) {
 	var nbr int = 0
 	var res bool = true
 
-	for i := range array1 {
+	minLength := len(array1)
+	if len(array2) < minLength {
+		minLength = len(array2)
+	}
+
+	for i := 0; i < minLength; i++ {
 		if array1[i] != array2[i] {
 			nbr++
 			res = false
