@@ -11,16 +11,18 @@ import (
 	"github.com/mavenless/sylote/lib/pylote"
 )
 
-func ArrayElementEquals(array1 []pylote.Job, array2 []pylote.Job) bool {
-	if len(array1) != len(array2) {
-		return false
-	}
+func ArrayElementEquals(array1 []pylote.Job, array2 []pylote.Job) (bool, int) {
+	var nbr int = 0
+	var res bool = true
+
 	for i := range array1 {
 		if array1[i] != array2[i] {
-			return false
+			nbr++
+			res = false
 		}
 	}
-	return true
+
+	return res, nbr
 }
 
 func userInputs() {
@@ -41,8 +43,9 @@ func Automation() {
 	for {
 		jobs := pylote.SortJobs(pylote.GetJobs(), data.Search)
 
-		if !ArrayElementEquals(jobs, precJobs) {
-			lib.SendNotification("Il y a " + strconv.Itoa(len(jobs)-len(precJobs)) + " nouvelle(s) offre(s) vous correspondant sur Pylote !")
+		equals, nbr := ArrayElementEquals(jobs, precJobs)
+		if !equals {
+			lib.SendNotification("Il y a " + strconv.Itoa(nbr) + " nouvelle(s) offre(s) vous correspondant sur Pylote !")
 			lib.SendDiscordNotification(data.DiscordWebhook, jobs)
 			precJobs = jobs
 		}
