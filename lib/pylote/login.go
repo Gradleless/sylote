@@ -1,7 +1,7 @@
 package pylote
 
 import (
-	"encoding/json"
+	"bytes"
 	"fmt"
 	"io"
 	"net/http"
@@ -61,8 +61,9 @@ func GetToken(email string, code string) string {
 	url := "https://api-p.pylote.io/freelance/check_code"
 	method := "POST"
 
-	payload := strings.NewReader(fmt.Sprintf(`{"mail":"%s","code":"%s"}`, email, code))
-
+	payload := strings.NewReader(fmt.Sprintf(`{"mail": "%s", "code": "%s"}`, email, code))
+	fmt.Println(payload)
+	fmt.Println("gnan")
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, payload)
 
@@ -71,16 +72,11 @@ func GetToken(email string, code string) string {
 		return ""
 	}
 	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:123.0) Gecko/20100101 Firefox/123.0")
-	req.Header.Add("Accept", "application/json, text/plain, */*")
-	req.Header.Add("Accept-Language", "en-US,en;q=0.5")
+	req.Header.Add("Accept", "application/json, */*")
 	req.Header.Add("Accept-Encoding", "gzip, deflate, br")
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("Origin", "moz-extension://422b98c5-8fbb-4b4c-801c-e2783df5e9b6")
-	req.Header.Add("Connection", "keep-alive")
-	req.Header.Add("Sec-Fetch-Dest", "empty")
-	req.Header.Add("Sec-Fetch-Mode", "cors")
-	req.Header.Add("Sec-Fetch-Site", "cross-site")
-	req.Header.Add("TE", "trailers")
+	req.Header.Add("Authorization", "Bearer 74381179-6e82-44c5-a0a5-c72d9181149a")
 
 	res, err := client.Do(req)
 	if err != nil {
@@ -89,17 +85,14 @@ func GetToken(email string, code string) string {
 	}
 	defer res.Body.Close()
 
-	body, err := io.ReadAll(res.Body)
+	var bodyBytes bytes.Buffer
+	_, err = io.Copy(&bodyBytes, res.Body)
 	if err != nil {
 		fmt.Println(err)
 		return ""
 	}
 
-	var token Token
-	err = json.Unmarshal(body, &token)
-	if err != nil {
-		fmt.Println(err)
-		return ""
-	}
-	return token.ID
+	fmt.Println(bodyBytes.String())
+
+	return ""
 }

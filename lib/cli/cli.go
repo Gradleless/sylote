@@ -7,8 +7,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/mavenless/sylote/lib"
-	"github.com/mavenless/sylote/lib/pylote"
+	"github.com/gradleless/sylote/lib"
+	"github.com/gradleless/sylote/lib/pylote"
 )
 
 func ArrayElementEquals(jobs []pylote.Job, precJobs []pylote.Job) (bool, int) {

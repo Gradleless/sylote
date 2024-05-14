@@ -9,8 +9,8 @@ import (
 
 	"path/filepath"
 
-	"github.com/mavenless/sylote/lib"
-	"github.com/mavenless/sylote/lib/pylote"
+	"github.com/gradleless/sylote/lib"
+	"github.com/gradleless/sylote/lib/pylote"
 )
 
 type Data struct {

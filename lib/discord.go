@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"reflect"
 
-	"github.com/mavenless/sylote/lib/pylote"
+	"github.com/gradleless/sylote/lib/pylote"
 )
 
 type DiscordWebhookPayload struct {
