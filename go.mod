@@ -1,4 +1,4 @@
-module github.com/mavenless/sylote
+module github.com/gradleless/sylote
 
 go 1.21.6
 
