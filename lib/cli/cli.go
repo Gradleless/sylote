@@ -15,19 +15,20 @@ func ArrayElementEquals(jobs []pylote.Job, precJobs []pylote.Job) (bool, int) {
 	var nbr int = 0
 	var res bool = true
 
-	minLength := len(jobs)
-	if len(precJobs) < minLength {
-		minLength = len(precJobs)
+	if len(jobs) != len(precJobs) {
 		res = false
 	}
 
-	for i := 0; i < minLength; i++ {
-		if jobs[i] != precJobs[i] {
-			nbr++
-			res = false
+	for _, job := range jobs {
+		for _, precJob := range precJobs {
+			if job.ID == precJob.ID {
+				nbr += 1
+				break
+			}
 		}
 	}
 
+	nbr = len(jobs) - nbr
 	return res, nbr
 }
 
