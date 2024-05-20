@@ -3,8 +3,8 @@ package main
 import (
 	"os"
 
-	"github.com/mavenless/sylote/lib"
-	"github.com/mavenless/sylote/lib/cli"
+	"github.com/gradleless/sylote/lib"
+	"github.com/gradleless/sylote/lib/cli"
 )
 
 func main() {
