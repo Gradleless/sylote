@@ -11,6 +11,8 @@ import (
 )
 
 func SetAvailability(id string, available bool, date string) {
+	UpdateAvailability(id)
+
 	if available {
 		date = ""
 	}
@@ -61,8 +63,6 @@ func SetAvailability(id string, available bool, date string) {
 	} else {
 		fmt.Println("Error while setting availability")
 	}
-
-	UpdateAvailability(id)
 }
 
 func UpdateAvailability(id string) {
@@ -76,14 +76,14 @@ func UpdateAvailability(id string) {
 	}
 
 	variablesToUpdate := map[string]interface{}{
-		"a":  logs.A + 1,
-		"m":  time.Now().Format(time.RFC3339Nano),
-		"cc": logs.Cc + 1,
 		"dd": logs.Dd + 1,
+		"cc": logs.Cc + 1,
+		"a":  logs.A + 1,
+		"m":  time.Now().UTC().Format("2006-01-02T15:04:05.000Z"),
 	}
 
 	for key, value := range variablesToUpdate {
-		payload := strings.NewReader(fmt.Sprintf("{\"id\": \"%s\", \"variable\": \"%s\", \"value\": \"%v\"}", id, key, value))
+		payload := strings.NewReader(fmt.Sprintf("{\"id\": \"%s\", \"variable\": \"%s\", \"value\": \"%v\"}", logs.Id, key, value))
 
 		client := &http.Client{}
 		req, err := http.NewRequest(method, url, payload)
@@ -122,7 +122,7 @@ func UpdateAvailability(id string) {
 		}
 
 		if body["msg"] == "OK" {
-			fmt.Printf("Logging updated for variable %s\n", key)
+			fmt.Printf("Logging updated for variable %s\n %v", key, value)
 		} else {
 			fmt.Printf("Error while updating variable %s\n", key)
 		}
