@@ -146,10 +146,14 @@ func UpdateAvailability(id string) {
 
 func GetLogs(id string) (LogData, error) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	// ***REMOVED***4
 >>>>>>> d6eec15 (pylote change 4 variables, why ???)
+=======
+
+>>>>>>> 95aa76e (io)
 	url := "https://api-p.pylote.io/logging/getLogs/" + id
 	method := "GET"
 
