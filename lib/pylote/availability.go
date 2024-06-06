@@ -52,7 +52,7 @@ func SetAvailability(id string, available bool, date string) {
 	var responseBody map[string]interface{}
 	err = json.Unmarshal(bodyBytes.Bytes(), &responseBody)
 	if err != nil {
-		fmt.Println("Erreur lors du décodage JSONe:", err)
+		fmt.Println("Erreur lors du décodage JSON (SetAvailability) :", err)
 		return
 	}
 
@@ -104,7 +104,7 @@ func UpdateAvailability(id string) {
 	var body map[string]interface{}
 	err = json.Unmarshal(bodyBytes.Bytes(), &body)
 	if err != nil {
-		fmt.Println("Erreur lors du décodage JSONfjfjfh:", err)
+		fmt.Println("Erreur lors du décodage JSON (UpdateAvailability) :", err)
 		return
 	}
 
