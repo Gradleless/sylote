@@ -130,7 +130,7 @@ func UpdateAvailability(id string) {
 }
 
 func GetLogs(id string) (LogData, error) {
-	// ***REMOVED***4
+
 	url := "https://api-p.pylote.io/logging/getLogs/" + id
 	method := "GET"
 
