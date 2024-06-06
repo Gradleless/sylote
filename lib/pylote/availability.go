@@ -162,7 +162,6 @@ func GetLogs(id string) (LogData, error) {
 		return LogData{}, err
 	}
 
-	fmt.Println("Log Data:", logData)
 	return logData, nil
 }
 
