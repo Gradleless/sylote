@@ -76,7 +76,6 @@ func UpdateAvailability(id string) {
 	}
 
 	variablesToUpdate := map[string]interface{}{
-<<<<<<< HEAD
 		"dd": logs.Dd + 1,
 		"cc": logs.Cc + 1,
 		"a":  logs.A + 1,
@@ -85,16 +84,6 @@ func UpdateAvailability(id string) {
 
 	for key, value := range variablesToUpdate {
 		payload := strings.NewReader(fmt.Sprintf("{\"id\": \"%s\", \"variable\": \"%s\", \"value\": \"%v\"}", logs.Id, key, value))
-=======
-		"a":  logs.A + 1,
-		"m":  time.Now().Format(time.RFC3339Nano),
-		"cc": logs.Cc + 1,
-		"dd": logs.Dd + 1,
-	}
-
-	for key, value := range variablesToUpdate {
-		payload := strings.NewReader(fmt.Sprintf("{\"id\": \"%s\", \"variable\": \"%s\", \"value\": \"%v\"}", id, key, value))
->>>>>>> d6eec15 (pylote change 4 variables, why ???)
 
 		client := &http.Client{}
 		req, err := http.NewRequest(method, url, payload)
@@ -133,11 +122,7 @@ func UpdateAvailability(id string) {
 		}
 
 		if body["msg"] == "OK" {
-<<<<<<< HEAD
-			fmt.Printf("Logging updated for variable %s\n %v", key, value)
-=======
 			fmt.Printf("Logging updated for variable %s\n", key)
->>>>>>> d6eec15 (pylote change 4 variables, why ???)
 		} else {
 			fmt.Printf("Error while updating variable %s\n", key)
 		}
@@ -145,15 +130,7 @@ func UpdateAvailability(id string) {
 }
 
 func GetLogs(id string) (LogData, error) {
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-	// ***REMOVED***4
->>>>>>> d6eec15 (pylote change 4 variables, why ???)
-=======
-
->>>>>>> 95aa76e (io)
 	url := "https://api-p.pylote.io/logging/getLogs/" + id
 	method := "GET"
 
@@ -185,10 +162,6 @@ func GetLogs(id string) (LogData, error) {
 		return LogData{}, err
 	}
 
-<<<<<<< HEAD
-=======
-	fmt.Println("Log Data:", logData)
->>>>>>> d6eec15 (pylote change 4 variables, why ???)
 	return logData, nil
 }
 
