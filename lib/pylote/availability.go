@@ -14,7 +14,7 @@ func SetAvailability(id string, available bool, date string) {
 	UpdateAvailability(id)
 
 	if available {
-		date = ""
+		date = time.Now().UTC().AddDate(0, 0, 7).Format("2006-01-02T15:04:05.000Z")
 	}
 
 	url := "https://api-p.pylote.io/availability/" + id
