@@ -2,6 +2,7 @@ package pylote
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
@@ -40,7 +41,6 @@ func GetCode(email string) {
 	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:123.0) Gecko/20100101 Firefox/123.0")
 	req.Header.Add("Accept", "application/json, text/plain, */*")
 	req.Header.Add("Accept-Language", "en-US,en;q=0.5")
-	req.Header.Add("Accept-Encoding", "gzip, deflate, br")
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("Origin", "moz-extension://422b98c5-8fbb-4b4c-801c-e2783df5e9b6")
 	req.Header.Add("Connection", "keep-alive")
@@ -62,8 +62,6 @@ func GetToken(email string, code string) string {
 	method := "POST"
 
 	payload := strings.NewReader(fmt.Sprintf(`{"mail": "%s", "code": "%s"}`, email, code))
-	fmt.Println(payload)
-	fmt.Println("gnan")
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, payload)
 
@@ -73,7 +71,6 @@ func GetToken(email string, code string) string {
 	}
 	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:123.0) Gecko/20100101 Firefox/123.0")
 	req.Header.Add("Accept", "application/json, */*")
-	req.Header.Add("Accept-Encoding", "gzip, deflate, br")
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("Origin", "moz-extension://422b98c5-8fbb-4b4c-801c-e2783df5e9b6")
 	req.Header.Add("Authorization", "Bearer 74381179-6e82-44c5-a0a5-c72d9181149a")
@@ -92,7 +89,16 @@ func GetToken(email string, code string) string {
 		return ""
 	}
 
-	fmt.Println(bodyBytes.String())
+	var body map[string]interface{}
+	err = json.Unmarshal(bodyBytes.Bytes(), &body)
+	if err != nil {
+		fmt.Println("Erreur lors du décodage JSON (GetToken) :", err)
+		return ""
+	}
+
+	if body["id"] != nil {
+		return body["id"].(string)
+	}
 
 	return ""
 }
